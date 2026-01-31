@@ -15,11 +15,15 @@ const app = express();
 app.use(helmet());
 app.use(requestId);
 
-const corsOrigin = process.env.CLIENT_ORIGIN || "http://localhost:5173";
-const allowedOrigins = corsOrigin
-  .split(",")
+const origins = [
+  process.env.CLIENT_ORIGIN1,
+  process.env.CLIENT_ORIGIN2,
+  process.env.CLIENT_ORIGIN3,
+];
+const allowedOrigins = origins
+  .filter(Boolean)
   .map((s) => s.trim())
-  .filter(Boolean);
+  .filter((s) => s.length > 0);
 app.use(
   cors({
     origin: (origin, cb) => {
