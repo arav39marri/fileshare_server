@@ -26,17 +26,7 @@ const allowedOrigins = origins
   .map((s) => s.trim())
   .filter((s) => s.length > 0);
 app.use(
-  cors({
-    origin: (origin, cb) => {
-      if (!origin) return cb(null, true);
-      if (allowedOrigins.includes("*")) return cb(null, true);
-      if (allowedOrigins.includes(origin)) return cb(null, true);
-      const err = new Error("CORS not allowed");
-      err.statusCode = 403;
-      return cb(err);
-    },
-    credentials: true,
-  })
+  cors()
 );
 
 app.use(morgan("dev"));
