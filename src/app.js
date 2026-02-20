@@ -19,6 +19,7 @@ const origins = [
   process.env.CLIENT_ORIGIN1,
   process.env.CLIENT_ORIGIN2,
   process.env.CLIENT_ORIGIN3,
+  "http://localhost:5173"
 ];
 const allowedOrigins = origins
   .filter(Boolean)
